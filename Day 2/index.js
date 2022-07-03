@@ -24,14 +24,16 @@ const doInstructions = (instructions) => {
     let depth = 0;
     let hPos = 0;
     instructions.forEach((el, ind, arr) => {
-        if (ind % 2 == 0) {
-            if (arr[ind] === "forward") {
+        switch (el) {
+            case "forward":
                 hPos += arr[ind + 1]
-            } else if (el === "up") {
+                break;
+            case "up":
                 depth -= arr[ind + 1]
-            } else if (el === "down") {
+                break;
+            case "down":
                 depth += arr[ind + 1]
-            }
+                break;
         }
     })
     console.log('depth', depth)
