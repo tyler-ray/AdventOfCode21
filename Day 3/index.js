@@ -6,17 +6,17 @@ const arrayify = str => str.split(' ');
 
 function sortFunction(arr) {
     // turn array of string Binary into separated numbers 
-    let arr2 = arr.map(el => el.split(''));
-    for (let i = 0; i < arr2.length; i++) {
-        for (let j = 0; j < arr2[i].length; j++) {
-            arr2[i][j] = Number.parseInt(arr2[i][j]);
+    let array2D = arr.map(el => el.split(''));
+    for (let i = 0; i < array2D.length; i++) {
+        for (let j = 0; j < array2D[i].length; j++) {
+            array2D[i][j] = Number.parseInt(array2D[i][j]);
         }
     }
-
+    // console.log(array2D)
     //add each position to itself
     let places = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-    arr2.forEach(el => {
+    array2D.forEach(el => {
         places[0] += el[0];
         places[1] += el[1];
         places[2] += el[2];
@@ -35,8 +35,8 @@ function sortFunction(arr) {
     // if average is above 0.5, 1 is more common. 
     // if average is below 0.5, 0 is more common
     // replace with most common;
-    let gammaArr = places.map(el => el / arr2.length > 0.5 ? 1 : 0);
-    let epsilonArr = places.map(el => el / arr2.length < 0.5 ? 1 : 0);
+    let gammaArr = places.map(el => el / array2D.length > 0.5 ? 1 : 0);
+    let epsilonArr = places.map(el => el / array2D.length < 0.5 ? 1 : 0);
 
     let gammaBin = gammaArr.join('');
     let epsilonBin = epsilonArr.join('');
@@ -44,7 +44,44 @@ function sortFunction(arr) {
     let gamma = parseInt(gammaBin, 2);
     let epsilon = parseInt(epsilonBin, 2);
 
+    doO2(gammaArr, array2D);
+    doCO2(epsilonArr, array2D);
+
     return gamma * epsilon;
+
+}
+
+//I need to take the 2D array, then check if the first of each is the same as the most common. if it is the same as the most common, then push to new array. repeat until #11
+
+
+function doO2(commonArr, dataArr2D) {
+    console.log('common', commonArr);
+    console.log('data', dataArr2D[0])
+        // let counter = 0;
+        // for (let i = 0; i < dataArr2D.length; i++) {
+        //     // console.log('data length', dataArr2D.length)
+        //     for (let j = 0; j < commonArr.length; j++) {
+        //         // console.log('commonArr legnth', commonArr.length)
+        //         if (dataArr2D[i][j] == commonArr[j]) {
+        //             // console.log(dataArr2D[i][j])
+        //             counter++
+        //         }
+        //     }
+        // }
+
+
+    // for each element of dataArr2D. check if the nth element of that index is the same. then push that to new array.
+    dataArr2D.forEach(bite => {
+        bite.forEach((bit, ind, arr) => {
+            if (bit == commonArr[ind]) {
+                // console.log("true")
+            }
+        })
+    })
+}
+
+function doCO2(leastCommonArr, dataArr2D) {
+
 }
 
 
