@@ -1,0 +1,1 @@
+//given 1 array of numbers and several "bingo" boards, one by one go through the numbers. and mark them on each bingo board. if a board wins, take the number that was just called, plus the sum of all non-marked numbers on that board, and multiply them together.
